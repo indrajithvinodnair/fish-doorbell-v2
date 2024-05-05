@@ -1,7 +1,7 @@
 # Thankyou https://github.com/christianversloot for the simple yet trustworthy solution to detect fishes
 Upon encountering the fish doorbell project for the first time, I immediately envisioned the potential it held. The idea of automating fish detection and triggering the doorbell seemed both feasible and intriguing, prompting me to embark on its creation. While scouring GitHub for inspiration, I stumbled upon https://github.com/christianversloot and their https://github.com/christianversloot/fish-doorbell repository. Witnessing the simplicity and effectiveness of the existing solution, I was compelled to explore additional avenues. With the notion of identifying passing fish species and using the data to forecast migration patterns across different seasons, I envisioned a fish migration forecaster.
 
-This V2 iteration not only detects fish presence but also endeavors to identify their species using Azure AI vision. It's worth noting that this version was developed within a single day, and currently, the AI Vision model is trained on data from two distinct fish species, sourced from the training_images folder. In future iterations of the project, I intend to capture images directly from the fish doorbell camera and train the model on them. This approach aims to enhance training accuracy under murky water and poor visibility conditions typical of the Weerdsluis lock environment.
+This V2 iteration not only detects fish presence but also endeavors to identify their species using Azure AI vision. It's worth noting that this version was developed within a single day, and currently, the AI Vision model is trained on data from two distinct fish species, sourced from the images/training_images folder. In future iterations of the project, I intend to capture images directly from the fish doorbell camera and train the model on them. This approach aims to enhance training accuracy under murky water and poor visibility conditions typical of the Weerdsluis lock environment.
 
 
 # Automating the Fish Doorbell with Computer Vision Plus detecting the fish species with Azure AI Vision
@@ -76,10 +76,10 @@ Use https://learn.microsoft.com/en-us/training/modules/classify-images-custom-vi
 
 For the fish that we just saw:
 
-![Fish](./image_with_edges_0.jpeg)
-![Fish](./image_with_edges_1.jpeg)
-![Fish](./image_with_edges_2.jpeg)
-![Fish](./image_with_edges_3.jpeg)
+![Fish](./images_with_species_predicted/image_with_edges_0.jpeg)
+![Fish](./images_with_species_predicted/image_with_edges_1.jpeg)
+![Fish](./images_with_species_predicted/image_with_edges_2.jpeg)
+![Fish](./images_with_species_predicted/image_with_edges_3.jpeg)
 
 When no fish are present:
 
