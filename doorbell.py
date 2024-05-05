@@ -2,7 +2,12 @@ import cv2
 import matplotlib.pyplot as plt
 import numpy as np
 import os
+import image_identification
 
+
+endpoint="<your endpoint here>"
+key="<yout key here>"
+custom_model_name="<your custom model name>"
 
 def load_image(file):
   """
@@ -16,11 +21,11 @@ def run_doorbell_on_images():
     Run the Fish Doorbell on a set of images.
   """
   images = os.listdir(f"{os.getcwd()}/images")
-  for image in images:
-    run_doorbell_on_image(f"{os.getcwd()}/images/{image}")
+  for  i,image in enumerate(images):
+    run_doorbell_on_image(f"{os.getcwd()}/images/{image}",i)
 
 
-def run_doorbell_on_image(file):
+def run_doorbell_on_image(file,iteration):
   """
     Run the Fish Doorbell on a single image.
   """
@@ -40,7 +45,13 @@ def run_doorbell_on_image(file):
   plt.suptitle(f'Image has fish = {fish}')
   plot_image(cropped_image, axs, 0)
   plot_image(image_with_edges, axs, 1)
-  plt.show()
+  # when a fish is detected, try to find its species
+  if(fish):
+    identify_species(axs,plt,file)
+  
+  plt.savefig(f'image_with_edges_{iteration}.png')
+  plt.close()
+  
 
 
 def crop_image(image, crop_top_bottom_px = 50):
@@ -81,6 +92,16 @@ def has_fish(image):
   """
   fish_like_pixels = np.count_nonzero(image)
   return fish_like_pixels > 50
+
+
+def identify_species(axs,plt,file):
+  """
+  Try to identify the fish species using azure AI Vision
+  """
+  tags = image_identification.image_analysis_sample_analyze_with_custom_model(endpoint=endpoint,key=key,custom_model_name=custom_model_name,img_file=file)
+  # Add custom tags to the image
+  tag_text = ', '.join([f'{tag.name}: {tag.confidence:.4f}' for tag in tags])
+  plt.text(0.0, -0.25, tag_text, fontsize=12,fontweight='bold',color='green', transform=axs[1].transAxes)
 
 
 if __name__ == "__main__":

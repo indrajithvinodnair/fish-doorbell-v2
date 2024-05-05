@@ -1,5 +1,18 @@
-# Automating the Fish Doorbell with Computer Vision
-🇳🇱: Automatiseren van de visdeurbel met computer vision.
+# Thankyou https://github.com/christianversloot for the simple yet trustworthy solution to detect fishes
+When I first came across the fish doorbell project, this was the initial idea that went through my head. I knew it would be possible
+to automate the process of detecting the fishes and ringing the doorbell, so I wanted to create it. Just as I was scouting github for
+inspirations, I came across https://github.com/christianversloot and his https://github.com/christianversloot/fish-doorbell repo. Seeing that
+the solution is already implemented and that too very simplistic, I wanted to try out additional things here. I already had the idea to detect the species of the passing fishes and then use the data to predict the migration patterns of specific species with respect to different seasons, sort of like a fish migration forcaster. 
+
+This V2 version on top of detecting the presence of the fish, tries to identify the species of the fish using
+the Azure AI vision.
+Just keep in mind that this was created with a single days effort and for the time being the AI Vision model is trained using using the data
+of two different species of fishes.These images are present in the training_images folder. In future versions of the project I plan on capturing images
+from the fish doorbell cam itself and train the model on those images so that the training can be done on the murky water conditions and poor visibility conditions of the  Weerdsluis lock. 
+
+
+# Automating the Fish Doorbell with Computer Vision Plus detecting the fish species with Azure AI Vision
+🇮🇳: Automating the Fish Doorbell with Computer Vision Plus detecting the fish species with Azure AI Vision
 
 ## Table of Contents
 - [Automating the Fish Doorbell with Computer Vision](#automating-the-fish-doorbell-with-computer-vision)
@@ -9,6 +22,7 @@
     + [On applying computer vision](#on-applying-computer-vision)
     + [Selecting a method for our fish](#selecting-a-method-for-our-fish)
     + [How the detector works.](#how-the-detector-works)
+    + [How the species identifier works.](#how-the-species-identifer-works)
   * [Results](#results)
   * [Running the code yourself](#running-the-code-yourself)
 
@@ -58,15 +72,21 @@ The `run_doorbell_on_image()` def performs the following steps:
 5. **Fish detection.** Simply check (in `has_fish()`) whether > 50 pixels are part of an edge. If so, an object is present.
 6. **Display the results.** Show the original picture and edged out one with the class on screen.
 
+### How the species identifier works.
+The logic for identifying the species of the fish is coupled with the `run_doorbell_on_image()` method. The `has_fish()`
+returns a boolean value indicating whether a fish is present in the frame or not.When it returns a true value
+the `identify_species()` is called which takes care of converting the image to byte content and sending it across the 
+Custom AI Vision models rest endpoint and plotting in the results.
+Use https://learn.microsoft.com/en-us/training/modules/classify-images-custom-vision/ for reference.
 
 ## Results
 
 For the fish that we just saw:
 
-![Fish](./images_with_classes/1.jpeg)
-![Fish](./images_with_classes/2.jpeg)
-![Fish](./images_with_classes/3.jpeg)
-![Fish](./images_with_classes/4.jpeg)
+![Fish](/images_with_edges_1.jpeg)
+![Fish](/images_with_edges_2.jpeg)
+![Fish](/images_with_edges_3.jpeg)
+![Fish](/images_with_edges_4.jpeg)
 
 When no fish are present:
 
