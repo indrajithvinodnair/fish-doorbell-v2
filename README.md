@@ -76,10 +76,10 @@ Use https://learn.microsoft.com/en-us/training/modules/classify-images-custom-vi
 
 For the fish that we just saw:
 
-![Fish](./images_with_species_predicted/image_with_edges_0.jpeg)
-![Fish](./images_with_species_predicted/image_with_edges_1.jpeg)
-![Fish](./images_with_species_predicted/image_with_edges_2.jpeg)
-![Fish](./images_with_species_predicted/image_with_edges_3.jpeg)
+![Fish](./images_with_species_predicted/image_with_edges_0.png)
+![Fish](./images_with_species_predicted/image_with_edges_1.png)
+![Fish](./images_with_species_predicted/image_with_edges_2.png)
+![Fish](./images_with_species_predicted/image_with_edges_3.png)
 
 When no fish are present:
 
